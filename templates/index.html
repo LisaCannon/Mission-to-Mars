@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars Info</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="row">
+      <div class  = "col">
+        <div class = "jumbotron text-center">
+          <h1>Mission to Mars</h1>
+          <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape new data</a></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- recent article about mars from https://mars.nasa.gov/news/-->
+    <div class = "row">
+      <div class = "col">
+        <strong><h3>Latest Mars News</h3></strong>
+        <h4 class="heading"> {{mars.title}}</h4>
+        <p style = "font-size:12px">{{mars.paragraph}}</p>
+      </div>
+    </div>
+
+    <!-- most recent image of mars on  https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars-->
+    <div class = "row">
+      <div class = "col-md-8">
+        <h3>Featured Mars Image</h3>
+        <img width = "100%" src="{{ mars.img_src }}" alt="picture pertaining to mars">
+      </div>
+
+      <!-- the most recent weather report on mars from twitter  https://twitter.com/marswxreport?lang=en -->
+      <div class = "col-md-4">
+        <div class = "border padding: 10px; margin: 5px">
+          <span>
+            <h3>Current Weather on Mars</h3>
+            <p>{{mars.mars_weather}}</p>
+          </span>
+        </div>
+        <br>
+
+        <!-- facts about mars from https://space-facts.com/mars/ -->
+        <h3>Mars Facts</h3>
+        {{mars.table_code|safe}}
+      </div>
+    </div>
+    <br>
+    <h2>Mars Hemispheres</h2>
+    <hr>
+    <!-- images of the differnt mars hemispheres from https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars -->
+    <div class = "row" style = "padding: 10px">
+      {% for hemi in mars.hemi_dict %}
+      <div class = "col-md-6">
+          <div class="card border" style="width: 40rem;">
+              <img width = "100%" src="{{hemi.img_url}}" class="card-img-top" alt="hemi">
+              <div class="card-body">
+                <p class="card-text">{{hemi.title}}</p>
+              </div>
+          </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+
+</html>
+
