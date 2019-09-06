@@ -8,6 +8,7 @@ import pandas as pd
 # create instance of Flask app
 app = Flask(__name__)
 
+#open browser
 def init_browser():
 
     executable_path = {"executable_path": "chromedriver.exe"}
